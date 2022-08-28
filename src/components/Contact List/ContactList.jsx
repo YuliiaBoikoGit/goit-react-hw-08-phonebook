@@ -1,7 +1,9 @@
+import * as React from 'react';
 import { useSelector } from "react-redux"; 
-import { List } from "./ContactList.styled";
+import List from '@mui/material/List';
 import { ContactItem } from "components/Contact/Contact";
 import { useGetContactsQuery, useDeleteContactMutation } from "redux/contactsApi";
+import { ListContainer } from './ContactList.styled';
 
 export const ContactList = () => {
     const filter = useSelector(state => state.contacts.filter);
@@ -18,10 +20,20 @@ export const ContactList = () => {
     };
 
     const filteredContacts = getFilteredContacts();
+
+    const style = {
+        width: '100%',
+        maxWidth: 500,
+        bgcolor: 'background.paper',
+    };
     
-    return <List>
+    return (
+        <ListContainer>
+            <List sx={style} component="nav" aria-label="contacts list">
                 {filteredContacts.map(contact =>
                     <ContactItem key={contact.id} contact={contact} onDeleteContact={handleDeleteContact} />
                 )}
-            </List>   
+            </List>
+        </ListContainer>
+    )
 };

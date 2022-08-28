@@ -1,12 +1,23 @@
+import * as React from 'react';
 import PropTypes from "prop-types";
-import { ContactListBtn, Contact } from "./Contact.styled";
+import Button from '@mui/material/Button';
+import ListItem from '@mui/material/ListItem';
+import Divider from '@mui/material/Divider';
+import ListItemText from '@mui/material/ListItemText';
 
-export const ContactItem = ({ contact, onDeleteContact }) => {
+export const ContactItem = ({ contact, onDeleteContact }) => {  
+    const style = {
+        maxWidth: 200,
+    };
+
     return (
         <>
-            <Contact>{contact.name}: {contact.number}
-                <ContactListBtn type="button" onClick={() => onDeleteContact(contact.id)}>Delete</ContactListBtn>
-            </Contact>
+            <ListItem divider>
+                <ListItemText primary={contact.name} sx={style} />
+                <ListItemText primary={contact.number} sx={style} />
+                <Button type="button" variant="contained" onClick={() => onDeleteContact(contact.id)}>Delete</Button>
+            </ListItem>
+            <Divider />
         </>
     );
 };

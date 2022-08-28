@@ -1,17 +1,31 @@
-import { Container, PageTitle, Title } from "./App.styled";
-import { ContactForm } from "components/Contact Form/ContactForm";
-import { ContactList } from "components/Contact List/ContactList";
-import { Filter } from "components/Filter/Filter";
+import { lazy } from 'react';
+import { Routes, Route } from 'react-router-dom';
+import UserMenu from 'components/UserMenu/UserMenu';
+import PrivateRoute from 'components/PrivateRoute/PrivateRoute';
+import Contacts from 'pages/Contacts';
+
+const Login = lazy(() =>
+  import('pages/SignIn' /* webpackChunkName: "login" */)
+);
+const SignUp = lazy(() =>
+  import('pages/Registration' /* webpackChunkName: "registration" */)
+);
+const Home = lazy(() =>
+  import('pages/Home' /* webpackChunkName: "home" */)
+);
 
 export const App = () => {
-    return (
-      <Container>
-        <PageTitle>Phonebook</PageTitle>
-        <ContactForm />
+  return (
+        <Routes>
+          <Route path="/" element={<UserMenu />}>
+            <Route index element={<Home />} />
+            <Route path='/login' element={<Login />} />
+            <Route path='/register' element={<SignUp />} />
+          </Route>
 
-        <Title>Contacts</Title>
-        <Filter />
-        <ContactList />
-      </Container>
+          <Route path="/" element={<PrivateRoute />}>
+            <Route path="/contacts" element={<Contacts />} />
+          </Route>
+        </Routes>
     );
 };

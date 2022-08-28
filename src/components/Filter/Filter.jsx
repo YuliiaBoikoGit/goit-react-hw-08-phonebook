@@ -1,6 +1,6 @@
 import { useSelector, useDispatch } from "react-redux";
 import { setFilter } from "redux/contacts";
-import { FilterLabel, FilterInput } from "./Filter.styled";
+import TextField from '@mui/material/TextField';
 
 export const Filter = () => {
   const filter = useSelector(state => state.contacts.filter);
@@ -8,7 +8,7 @@ export const Filter = () => {
 
   const handleChangeFilter = event => dispatch(setFilter(event.target.value));
   
-    return  <FilterLabel>
-              Find contacts by name <FilterInput type="text" value={filter} onChange={handleChangeFilter} />
-            </FilterLabel>
+  return (
+    <TextField label="Find contacts by name" type="search" value={filter} onChange={handleChangeFilter} />
+  );  
 };
