@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useNavigate } from "react-router-dom";
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -15,6 +16,7 @@ const theme = createTheme();
 export default function SignIn() {
   const [login, status] = useLoginMutation();
   const { isLoading } = status;
+  let navigate = useNavigate();
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -24,6 +26,8 @@ export default function SignIn() {
     const password = data.get('password');
 
     login({ email, password });
+
+    navigate("/");
   };
 
   return (

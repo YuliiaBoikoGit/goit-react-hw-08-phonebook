@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useNavigate } from "react-router-dom";
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -11,11 +12,12 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useRegistrationMutation } from 'redux/authApi';
 
-
 const theme = createTheme();
 
 export default function SignUp() {
-  const [registration] = useRegistrationMutation();
+  const [registration, status] = useRegistrationMutation();
+  const { isLoading } = status;
+  let navigate = useNavigate();
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -26,6 +28,8 @@ export default function SignUp() {
     const name = data.get('name');
     
     registration({ name, email, password });
+
+    navigate("/login");
   };
 
   return (
@@ -86,6 +90,7 @@ export default function SignUp() {
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
+              disabled={isLoading}
             >
               Sign Up
             </Button>

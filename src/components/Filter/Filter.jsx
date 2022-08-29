@@ -1,6 +1,7 @@
+import * as React from 'react';
+import TextField from '@mui/material/TextField';
 import { useSelector, useDispatch } from "react-redux";
 import { setFilter } from "redux/contacts";
-import TextField from '@mui/material/TextField';
 
 export const Filter = () => {
   const filter = useSelector(state => state.contacts.filter);

@@ -24,6 +24,8 @@ export const ContactList = () => {
     const style = {
         width: '100%',
         maxWidth: 500,
+        marginLeft: 'auto',
+        marginRight: 'auto',
         bgcolor: 'background.paper',
     };
     
