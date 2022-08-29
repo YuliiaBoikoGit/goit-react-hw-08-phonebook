@@ -29,6 +29,7 @@ export default function SignUp() {
     
     registration({ name, email, password });
 
+    alert('You have successfully registered. Please enter your email and password for login.');
     navigate("/login");
   };
 

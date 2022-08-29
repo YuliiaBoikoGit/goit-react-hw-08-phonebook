@@ -10,7 +10,7 @@ import { Container } from "@mui/material";
 
 const Contacts = () => {
     return (
-        <Container>
+        <>
             <UserMenu />
             <Container sx={{display: 'flex', paddingTop: 3,}}>
                 <Box
@@ -34,7 +34,7 @@ const Contacts = () => {
                 </Box>
                 <ContactForm />
             </Container>
-        </Container>
+        </>
     );
 };
 
